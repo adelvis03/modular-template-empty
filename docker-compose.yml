@@ -1,0 +1,20 @@
+services:
+  TemplateNameProject:
+    image: postgres
+  
+  # distributedcache:
+  #   image: redis
+  
+  # seq:
+  #   image: datalust/seq:latest
+  
+  # messagebus:
+  #   image: rabbitmq:3-management
+  
+  # identity:
+  #   image: quay.io/keycloak/keycloak                                                                                                                             
+  
+  
+volumes:
+  postgres_TemplateNameProject:
+
