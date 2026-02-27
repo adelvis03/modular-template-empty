@@ -68,6 +68,7 @@ public static class Extensions
         }
 
         services.AddCorsPolicy(configuration);
+        services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(swagger =>
         {
             swagger.EnableAnnotations();
