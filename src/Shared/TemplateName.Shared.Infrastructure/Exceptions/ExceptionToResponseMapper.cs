@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using Humanizer;
 using TemplateName.Shared.Abstractions.Exceptions;
-using TemplateName.Shared.Infrastructure.Exceptions.ExceptionClasses;
+using TemplateName.Shared.Abstractions.Exceptions.ExceptionClasses;
 
 namespace TemplateName.Shared.Infrastructure.Exceptions;
 

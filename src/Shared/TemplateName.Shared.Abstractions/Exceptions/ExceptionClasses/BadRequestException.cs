@@ -1,6 +1,6 @@
 using System;
 
-namespace TemplateName.Shared.Infrastructure.Exceptions.ExceptionClasses;
+namespace TemplateName.Shared.Abstractions.Exceptions.ExceptionClasses;
 
 public class BadRequestException : Exception
 {
