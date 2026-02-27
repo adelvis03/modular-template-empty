@@ -21,6 +21,8 @@ foreach (var module in modules)
 }
 
 var app = builder.Build();
+
+app.MapControllers();
 app.UseModularInfrastructure();
 
 foreach (var module in modules)
