@@ -135,6 +135,7 @@ public static class Extensions
         app.UseCorrelationId();
         app.UseErrorHandling();
         app.UseSwagger();
+        app.UseSwaggerUI();
         app.UseReDoc(reDoc =>
         {
             reDoc.RoutePrefix = "docs";
