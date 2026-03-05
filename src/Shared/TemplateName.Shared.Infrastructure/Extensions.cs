@@ -69,14 +69,29 @@ public static class Extensions
 
         services.AddCorsPolicy(configuration);
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen(swagger =>
+        services.AddSwaggerGen(options =>
         {
-            swagger.EnableAnnotations();
-            swagger.CustomSchemaIds(x => x.FullName);
-            swagger.SwaggerDoc("v1", new OpenApiInfo
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
-                Title = "TemplateName API",
-                Version = "v1"
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
             });
         });
         
