@@ -7,3 +7,5 @@ public class FileOptions
     public string Interval { get; set; }
 }
 
+
+

@@ -9,3 +9,5 @@ public interface ISecurityProvider
     string Sanitize(string value);
 }
 
+
+

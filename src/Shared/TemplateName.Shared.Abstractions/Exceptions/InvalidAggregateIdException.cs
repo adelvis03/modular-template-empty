@@ -10,3 +10,5 @@ public class InvalidAggregateIdException : CustomException
         => Id = id;
 }
 
+
+

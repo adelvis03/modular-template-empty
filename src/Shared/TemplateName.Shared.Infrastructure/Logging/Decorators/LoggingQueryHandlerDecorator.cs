@@ -41,3 +41,5 @@ public sealed class LoggingQueryHandlerDecorator<TQuery, TResult> : IQueryHandle
     }
 }
 
+
+

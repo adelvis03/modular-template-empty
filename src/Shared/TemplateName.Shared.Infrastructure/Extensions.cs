@@ -157,7 +157,7 @@ public static class Extensions
             reDoc.SpecUrl("/swagger/v1/swagger.json");
             reDoc.DocumentTitle = "TemplateName API";
         });
-        app.UseAuthentication();
+        app.UseAuth();
         app.UseContext();
         app.UseLogging();
         app.UseRouting();
@@ -201,4 +201,6 @@ public static class Extensions
     public static Guid? TryGetCorrelationId(this HttpContext context)
         => context.Items.TryGetValue(CorrelationIdKey, out var id) ? (Guid) id : null;
 }
+
+
 

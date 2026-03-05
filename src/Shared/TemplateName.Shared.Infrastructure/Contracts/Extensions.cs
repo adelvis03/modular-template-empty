@@ -26,3 +26,5 @@ public static class Extensions
         => app.ApplicationServices.GetRequiredService<IContractRegistry>();
 }
 
+
+

@@ -6,3 +6,5 @@ public interface IPasswordManager
     bool IsValid(string password, string securedPassword);
 }
 
+
+

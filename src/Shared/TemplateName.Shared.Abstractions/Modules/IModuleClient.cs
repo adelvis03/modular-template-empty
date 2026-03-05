@@ -13,3 +13,5 @@ public interface IModuleClient
     Task PublishAsync(object message, CancellationToken cancellationToken = default);
 }
 
+
+

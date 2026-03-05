@@ -8,3 +8,5 @@ public interface IDomainEventHandler<in TEvent> where TEvent : class, IDomainEve
     Task HandleAsync(TEvent @event, CancellationToken cancellationToken = default);
 }
 
+
+

@@ -15,3 +15,4 @@ public class BadRequestException : Exception
 
     public string Details { get; }
 }
+

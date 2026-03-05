@@ -5,3 +5,5 @@ public interface IHasher
     string Hash(string data);
 }
 
+
+

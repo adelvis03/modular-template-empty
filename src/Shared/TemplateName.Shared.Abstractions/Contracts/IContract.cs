@@ -9,3 +9,5 @@ public interface IContract
     public IEnumerable<string> Required { get; }
 }
 
+
+

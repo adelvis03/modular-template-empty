@@ -55,3 +55,5 @@ public abstract class Contract<T> : IContract where T : class
     protected void IgnoreAll() => _required.Clear();
 }
 
+
+

@@ -39,3 +39,4 @@ public class ExceptionToResponseMapper : IExceptionToResponseMapper
         return Codes.GetOrAdd(type, type.Name.Underscore().Replace("_exception", string.Empty));
     }
 }
+

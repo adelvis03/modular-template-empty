@@ -7,3 +7,5 @@ public interface IClock
     DateTime CurrentDate();
 }
 
+
+

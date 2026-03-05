@@ -21,3 +21,5 @@ public sealed class JsonModuleSerializer : IModuleSerializer
         => JsonSerializer.Deserialize(Encoding.UTF8.GetString(value), type, SerializerOptions);
 }
 
+
+

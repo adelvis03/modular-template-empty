@@ -21,3 +21,5 @@ public interface IContractRegistry
     void Validate(IEnumerable<Assembly> assemblies);
 }
 
+
+

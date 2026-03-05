@@ -11,3 +11,5 @@ public sealed class CorsOptions
     public IEnumerable<string> ExposedHeaders { get; set; }
 }
 
+
+

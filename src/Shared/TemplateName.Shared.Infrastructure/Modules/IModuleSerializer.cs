@@ -9,3 +9,5 @@ public interface IModuleSerializer
     object Deserialize(byte[] value, Type type);
 }
 
+
+

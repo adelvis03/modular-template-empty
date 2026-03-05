@@ -10,3 +10,5 @@ public class InboxMessage
     public DateTime? ProcessedAt { get; set; }
 }
 
+
+

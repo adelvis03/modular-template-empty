@@ -24,5 +24,21 @@ public sealed class CommandDispatcher : ICommandDispatcher
         var handler = scope.ServiceProvider.GetRequiredService<ICommandHandler<TCommand>>();
         await handler.HandleAsync(command, cancellationToken);
     }
+
+    public async Task<TResult> SendAsync<TCommand, TResult>(TCommand command, CancellationToken cancellationToken = default)
+        where TCommand : class, ICommand<TResult>
+    {
+        if(command is null)
+        {
+            return default;
+        }
+
+        using var scope = _serviceProvider.CreateScope();
+        var handler = scope.ServiceProvider.GetRequiredService<ICommandHandler<TCommand, TResult>>();
+        var result = await handler.HandleAsync(command, cancellationToken);
+        return result;
+    }
 }
+
+
 

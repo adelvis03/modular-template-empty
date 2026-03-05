@@ -12,3 +12,5 @@ public abstract class PagedQuery<T> : PagedQuery, IPagedQuery<Paged<T>>
 {
 }
 
+
+

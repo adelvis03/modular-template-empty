@@ -9,3 +9,5 @@ public interface IDomainEventDispatcher
     Task DispatchAsync(IDomainEvent[] events, CancellationToken cancellationToken = default);
 }
 
+
+

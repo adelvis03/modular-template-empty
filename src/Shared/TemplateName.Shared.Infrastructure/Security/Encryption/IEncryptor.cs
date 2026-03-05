@@ -6,3 +6,5 @@ public interface IEncryptor
     string Decrypt(string data, string key);
 }
 
+
+

@@ -42,3 +42,5 @@ public sealed class PagedQueryHandlerDecorator<TQuery, TResult> : IQueryHandler<
     }
 }
 
+
+

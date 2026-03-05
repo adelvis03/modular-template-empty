@@ -40,3 +40,5 @@ public class Paged<T> : PagedBase
         => Paged<TResult>.From(this, Items.Select(map).ToList());
 }
 
+
+

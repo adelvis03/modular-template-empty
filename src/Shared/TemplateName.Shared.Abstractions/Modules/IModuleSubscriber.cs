@@ -15,3 +15,5 @@ public interface IModuleSubscriber
         where TRequest : class;
 }
 
+
+

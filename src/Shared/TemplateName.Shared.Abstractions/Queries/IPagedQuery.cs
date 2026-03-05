@@ -10,3 +10,5 @@ public interface IPagedQuery<T> : IPagedQuery, IQuery<T>
 {
 }
 
+
+

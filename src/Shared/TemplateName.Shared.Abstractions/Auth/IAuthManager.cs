@@ -9,3 +9,5 @@ public interface IAuthManager
         IDictionary<string, IEnumerable<string>> claims = null);
 }
 
+
+

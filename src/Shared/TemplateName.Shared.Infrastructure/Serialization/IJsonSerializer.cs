@@ -9,3 +9,5 @@ public interface IJsonSerializer
     object Deserialize(string value, Type type);
 }
 
+
+

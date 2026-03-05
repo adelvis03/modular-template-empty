@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -15,9 +18,11 @@ namespace TemplateName.Shared.Infrastructure.Auth;
 public static class Extensions
 {
     private const string SectionName = "auth";
+    private const string AccessTokenCookieName = "__access_token";
+    private const string AuthorizationHeader = "authorization";
 
     public static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration configuration,
-        IEnumerable<IModule> modules = null)
+        IEnumerable<IModule> modules = null, Action<JwtBearerOptions> optionsFactory = null)
     {
         var section = configuration.GetSection(SectionName);
         var options = section.BindOptions<AuthOptions>();
@@ -155,6 +160,20 @@ public static class Extensions
                 {
                     o.Challenge = options.Jwt.Challenge;
                 }
+                o.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        if (context.Request.Cookies.TryGetValue(AccessTokenCookieName, out var token))
+                        {
+                            context.Token = token;
+                        }
+
+                        return Task.CompletedTask;
+                    },
+                };
+
+                optionsFactory?.Invoke(o);
             });
 
         if (securityKey is not null)
@@ -177,5 +196,29 @@ public static class Extensions
 
         return services;
     }
+
+    public static IApplicationBuilder UseAuth(this IApplicationBuilder app)
+    {
+        app.UseAuthentication();
+        app.Use(async (ctx, next) =>
+        {
+            ctx.Request.Headers.Remove(AuthorizationHeader);
+
+            if (ctx.Request.Cookies.ContainsKey(AccessTokenCookieName))
+            {
+                var authenticateResult = await ctx.AuthenticateAsync(JwtBearerDefaults.AuthenticationScheme);
+                if (authenticateResult.Succeeded && authenticateResult.Principal is not null)
+                {
+                    ctx.User = authenticateResult.Principal;
+                }
+            }
+
+            await next();
+        });
+
+        return app;
+    }
 }
+
+
 
