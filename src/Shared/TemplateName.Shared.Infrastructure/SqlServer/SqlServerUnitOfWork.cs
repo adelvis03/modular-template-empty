@@ -2,13 +2,13 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace TemplateName.Shared.Infrastructure.Postgres;
+namespace TemplateName.Shared.Infrastructure.SqlServer;
 
-public abstract class PostgresUnitOfWork<T> : IUnitOfWork where T : DbContext
+public abstract class SqlServerUnitOfWork<T> : IUnitOfWork where T : DbContext
 {
     private readonly T _dbContext;
 
-    protected PostgresUnitOfWork(T dbContext)
+    protected SqlServerUnitOfWork(T dbContext)
     {
         _dbContext = dbContext;
     }

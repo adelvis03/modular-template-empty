@@ -1,6 +1,6 @@
 services:
   TemplateNameProject:
-    image: postgres
+    image: mcr.microsoft.com/mssql/server:latest
   
   # distributedcache:
   #   image: redis
@@ -16,5 +16,5 @@ services:
   
   
 volumes:
-  postgres_TemplateNameProject:
+  sqlserver_TemplateNameProject:
 

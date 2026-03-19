@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TemplateName.Shared.Infrastructure.Postgres;
+namespace TemplateName.Shared.Infrastructure.SqlServer;
 
 public interface IUnitOfWork
 {

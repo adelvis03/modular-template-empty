@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TemplateName.Shared.Abstractions.Events;
 
-namespace TemplateName.Shared.Infrastructure.Postgres.Decorators;
+namespace TemplateName.Shared.Infrastructure.SqlServer.Decorators;
 
 [Decorator]
 public class TransactionalEventHandlerDecorator<T> : IEventHandler<T> where T : class, IEvent

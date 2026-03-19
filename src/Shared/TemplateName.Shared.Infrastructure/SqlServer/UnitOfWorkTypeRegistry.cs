@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TemplateName.Shared.Infrastructure.Postgres;
+namespace TemplateName.Shared.Infrastructure.SqlServer;
 
 public class UnitOfWorkTypeRegistry
 {

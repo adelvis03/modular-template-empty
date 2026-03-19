@@ -26,7 +26,7 @@ using TemplateName.Shared.Infrastructure.Logging;
 using TemplateName.Shared.Infrastructure.Messaging;
 using TemplateName.Shared.Infrastructure.Messaging.Outbox;
 using TemplateName.Shared.Infrastructure.Modules;
-using TemplateName.Shared.Infrastructure.Postgres;
+using TemplateName.Shared.Infrastructure.SqlServer;
 using TemplateName.Shared.Infrastructure.Queries;
 using TemplateName.Shared.Infrastructure.Security;
 using TemplateName.Shared.Infrastructure.Serialization;
@@ -112,7 +112,7 @@ public static class Extensions
         services.AddMessaging(configuration);
         services.AddSecurity(configuration);
         services.AddOutbox(configuration);
-        services.AddPostgres(configuration);
+        services.AddDatabase(configuration);
         services.AddSingleton<IClock, UtcClock>();
         services.AddSingleton<IDispatcher, InMemoryDispatcher>();
         services.AddHostedService<DbContextAppInitializer>();

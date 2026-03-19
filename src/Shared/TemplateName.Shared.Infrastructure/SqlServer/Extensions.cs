@@ -10,13 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using TemplateName.Shared.Abstractions.Commands;
 using TemplateName.Shared.Abstractions.Events;
 using TemplateName.Shared.Abstractions.Queries;
-using TemplateName.Shared.Infrastructure.Postgres.Decorators;
+using TemplateName.Shared.Infrastructure.SqlServer.Decorators;
 
-namespace TemplateName.Shared.Infrastructure.Postgres;
+namespace TemplateName.Shared.Infrastructure.SqlServer;
 
 public static class Extensions
 {
-    private const string SectionName = "postgres";
+    private const string SectionName = "Database";
     
     public static Task<Paged<T>> PaginateAsync<T>(this IQueryable<T> data, IPagedQuery query,
         CancellationToken cancellationToken = default)
@@ -66,14 +66,11 @@ public static class Extensions
         return await data.Skip((page - 1) * results).Take(results).ToListAsync(cancellationToken);
     }
 
-    public static IServiceCollection AddPostgres(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         var section = configuration.GetSection(SectionName);
-        services.Configure<PostgresOptions>(section);
+        services.Configure<SqlServerOptions>(section);
         services.AddSingleton(new UnitOfWorkTypeRegistry());
-        
-        // Temporary fix for EF Core issue related to https://github.com/npgsql/efcore.pg/issues/2000
-        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         return services;
     }
@@ -86,12 +83,12 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection AddPostgres<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
+    public static IServiceCollection AddDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
     {
         var section = configuration.GetSection(SectionName);
-        var options = section.BindOptions<PostgresOptions>();
+        var options = section.BindOptions<SqlServerOptions>();
         services.AddDbContext<T>(x => x
-            .UseNpgsql(options.ConnectionString)
+            .UseSqlServer(options.ConnectionString)
             .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
         return services;
