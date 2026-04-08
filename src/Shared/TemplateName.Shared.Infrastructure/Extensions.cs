@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using TemplateName.Shared.Abstractions;
 using TemplateName.Shared.Abstractions.Dispatchers;
 using TemplateName.Shared.Abstractions.Modules;
@@ -33,6 +32,7 @@ using TemplateName.Shared.Infrastructure.Serialization;
 using TemplateName.Shared.Infrastructure.Services;
 using TemplateName.Shared.Infrastructure.Storage;
 using TemplateName.Shared.Infrastructure.Time;
+using TemplateName.Shared.Infrastructure.Swagger;
 
 namespace TemplateName.Shared.Infrastructure;
 
@@ -69,31 +69,7 @@ public static class Extensions
 
         services.AddCorsPolicy(configuration);
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen(options =>
-        {
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-            {
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "Bearer"
-            });
-
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    Array.Empty<string>()
-                }
-            });
-        });
+        services.AddSwagger();
         
         services.AddMemoryCache();
         services.AddHttpClient();
